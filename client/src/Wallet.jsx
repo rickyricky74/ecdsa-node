@@ -1,14 +1,18 @@
 import server from "./server";
 
-function Wallet({ address, setAddress, balance, setBalance }) {
+function Wallet({ address, setAddress, balance, setBalance, nonces, initNonce }) {
+
   async function onChange(evt) {
+    
     const address = evt.target.value;
+
     setAddress(address);
     if (address) {
       const {
-        data: { balance },
+        data: { balance, nonce },
       } = await server.get(`balance/${address}`);
       setBalance(balance);
+      initNonce(address, nonce);
     } else {
       setBalance(0);
     }
@@ -24,6 +28,7 @@ function Wallet({ address, setAddress, balance, setBalance }) {
       </label>
 
       <div className="balance">Balance: {balance}</div>
+      <pre>Nonce: {nonces[address] ?? 0}</pre>
     </div>
   );
 }

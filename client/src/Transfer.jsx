@@ -1,7 +1,15 @@
 import { useState } from "react";
 import server from "./server";
 
-function Transfer({ address, setBalance }) {
+// TODO: 
+// - Add a button for the user to sign the transaction
+//   - Provide pop-up to enter the private key
+//   - Create a msgHash keccak256(sender + recipient + amount + nonce)
+//   - Create the signature: secp.signAsync(msgHash, privKey)
+//   - Set the signature in a useState variable (i.e. [signature, setSignature] = useState(""))
+// - Implement signature verification in the server
+
+function Transfer({ address, setBalance, nonces, incrementNonce }) {
   const [sendAmount, setSendAmount] = useState("");
   const [recipient, setRecipient] = useState("");
 
@@ -16,8 +24,11 @@ function Transfer({ address, setBalance }) {
       } = await server.post(`send`, {
         sender: address,
         amount: parseInt(sendAmount),
+        nonce: nonces[address]+1,
+        signature: "0x0",
         recipient,
       });
+      incrementNonce(address);
       setBalance(balance);
     } catch (ex) {
       alert(ex.response.data.message);
