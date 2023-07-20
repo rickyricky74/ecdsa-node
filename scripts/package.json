@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ethereum-cryptography": "^2.1.2",
-    "noble-secp256k1": "^1.1.0"
+    "ethereum-cryptography": "^2.1.2"
   }
 }

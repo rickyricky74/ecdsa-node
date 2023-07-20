@@ -40,7 +40,7 @@ label {
   }
 }
 
-input {
+input, button {
   padding: 10px 0;
   border-radius: 0.125rem;
   border: 1px solid rgb(226, 232, 240);
@@ -54,7 +54,6 @@ input {
   border-radius: 0.125rem;
   padding: 10px 20px;
   color: white;
-  display: inline-flex;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 400;
@@ -62,6 +61,12 @@ input {
   &:hover {
     cursor: pointer;
   }
+}
+
+.button:disabled {
+  background-color: #e2e8f0;
+  color: #a0aec0;
+  cursor: not-allowed;
 }
 
 .wallet {
@@ -80,7 +85,65 @@ input {
   }
 }
 
+.signed {
+  width: 92%;
+  background-color: #fff;
+  padding: 10px;
+  color: #319795;
+  text-align: center;
+}
+
+.transfer-box {
+  width: 45%;
+}
+
 .transfer {
   display: flex;
   flex-direction: column;
+}
+
+.sign-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 545px;
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+}
+
+.sign-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.priv-key-input {
+  width: 95%;
+  margin: 10px 10px;
+}
+
+.sign-button {
+  width: 98%;
+  margin: 10px 10px 10px 10px;
 }

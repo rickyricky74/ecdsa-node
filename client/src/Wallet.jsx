@@ -28,7 +28,6 @@ function Wallet({ address, setAddress, balance, setBalance, nonces, initNonce })
       </label>
 
       <div className="balance">Balance: {balance}</div>
-      <pre>Nonce: {nonces[address] ?? 0}</pre>
     </div>
   );
 }
